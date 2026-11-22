@@ -1,61 +1,57 @@
 ---
 name: defensive-gate-review
-description: 审查防御性校验、就绪门禁、恢复和重试机制是否阻断正常业务或扩大失败范围。用于过度防御、过度门禁及正常路径可靠性审查，支持现有链路和代码变更。
+description: Review defensive validations, readiness gates, retries, and recovery paths to see whether they block normal workflows or widen failure scope. Use for over-defensive code, overly broad gating, and normal-path reliability reviews on existing call paths or code changes.
 ---
 
-# 防御门禁可靠性审查
+# Defensive gate reliability review
 
-依据 **Defensive Mechanisms Must Not Reduce Normal-Path Reliability**：
-防御应限制故障影响；每个阻断条件都应对应当前操作的具体不变量，并证明其新增失败面值得承担。
+## Core principle
 
-默认交付审查结果。修复、登记工单和变更配置按用户授权范围执行。
+Defensive mechanisms must contain failures instead of adding failure conditions to normal workflows. Add only the minimum safeguards required by reachable failure modes or explicit correctness and security invariants. Every blocking condition must protect a specific invariant of the current operation and justify its own failure cost.
 
-## 判定标准
+Auxiliary work such as logging, diagnostics, optimization, bookkeeping, and cleanup must not block unrelated operations. Its failure must not invalidate committed results or report a business failure.
 
-对每个候选机制回答四个问题：
+Let `E` be the guarded exception and `G` be a false gate failure on a normal path. The added normal-path failure probability is `P(not E) * P(G | not E)`. When `E` is rare, `P(not E)` is near 1, so normal workflows inherit nearly the full failure probability of `G`.
 
-1. **必要性**：移除该条件，当前操作会违反什么具体不变量？是否存在可达场景或明确契约？
-2. **作用范围**：哪些请求、资源或步骤真正依赖它？能否将失败限制在受影响对象？
-3. **失败语义**：是否区分业务失败、结果未知、暂不可用和辅助失败？已提交结果会否被后续诊断或清理失败改判？
-4. **净可靠性**：在被防范的例外没有发生时，该机制新增了哪些拒绝、依赖、等待或恢复失败？收益是否足以支持这些代价？
+Deliver a review report by default. Apply fixes, file issues, or change configuration only when authorized.
 
-以可达失败链确认问题；校验数量、抽象数量和命名仅作为定位线索。缺少发生率数据时用具体反例论证，保留概率判断的不确定性。
+## Evaluation criteria
 
-## 审查流程
+Answer four questions for each candidate mechanism:
 
-1. **确定边界。** 记录仓库、版本及相关工作区改动。现状审查从用户指定链路开始；变更审查沿 diff 追踪必要的调用方和下游。从已有上下文确定范围，缺失信息只在影响结论时补充。
-2. **沿正常路径追踪。** 找到入口、必要依赖、业务提交点和返回结果；检查校验、就绪判断、异常处理、超时、重试、恢复、锁与清理如何改变控制流。还要跟踪查询、取消、释放资源等恢复动作是否受同一门禁约束。
-3. **构造最小反例。** 固定一项本来可以成功的操作，仅改变无关对象、辅助设施或临时状态，追踪它为何被拒绝、延迟、取消或错误报告。说明移除或缩小门禁后，原不变量如何继续成立。
-4. **验证并归因。** 优先复用隔离夹具和公开入口；故障注入应区分防御机制引入的影响与真实资源故障。完整调用链足以证明的结论可静态报告；既有测试通过仅证明实现符合断言，仍需审查断言本身的合同。
-5. **给出最小调整。** 优先删除无依据门禁、收缩依赖与锁范围、分离辅助结果，或用局部所有权和事务边界消除失败路径。新增恢复层、状态机、队列或配置也需接受同样的四问审查。
+1. **Necessity.** What invariant breaks if you remove this check? Does a reachable scenario or explicit contract require it?
+2. **Scope.** Which requests, resources, or steps depend on this check? Can you isolate failure to the affected object?
+3. **Failure semantics.** Does the mechanism separate business failure, unknown outcome, temporary unavailability, and auxiliary failure? Can downstream diagnostic or cleanup failure overwrite a committed result?
+4. **Net reliability.** When `E` does not happen, what rejections, waits, dependencies, or recovery failures does the mechanism add? Do prevented failures outweigh that cost?
 
-验证使用隔离资源，真实副作用遵循任务授权。
+Confirm findings with reachable failure chains. Treat check counts, abstraction counts, and naming only as search cues. Without failure-rate data, argue from concrete counterexamples and keep probability uncertainty explicit.
 
-## 重点检查
+## Review process
 
-- **范围扩大**：单记录失败拒绝整批；单实例失败停止全系统；单资源冲突冻结无关资源。
-- **恢复被阻断**：查询、取消、归还或释放资源依赖新增业务的完整就绪条件。
-- **辅助工作成为硬依赖**：日志、通知、监控、诊断、摘要或清理失败，阻断业务或覆盖已提交结果。
-- **失败分类失真**：一次查询超时触发全进程重启；暂不可用或结果未知被当作业务失败；依赖等待耗尽程序故障预算。
-- **失效与校验过宽**：无关配置、注释、历史记录或不需要的字段，使有效输入和缓存失效。
-- **等待与恢复失控**：准备或重试占据正常执行循环；超时遗留后代进程或锁；成功核验被自身耗时立即判旧。
-- **所有权和解除条件缺失**：按名称猜测清理对象；历史冲突记录永久充当当前门禁；核清后没有解除路径。
+1. **Set the boundary.** Record the repository, revision, and relevant working-tree changes. Trace user-specified flows for existing code, or follow the diff to affected callers and callees for changes.
+2. **Trace the normal path.** Locate the entry point, required dependencies, commit point, and return value. Check how validations, readiness gates, retries, timeouts, recovery hooks, locks, and cleanup alter control flow. Check whether recovery actions such as query, cancel, or release share the same gate.
+3. **Build a minimal counterexample.** Hold a valid operation fixed and change only an unrelated object, auxiliary component, or transient state. Trace why it fails, stalls, or misreports, and show how the invariant still holds with a narrower gate.
+4. **Verify and attribute.** Use isolated fixtures and public entry points. Separate gate-induced failures from real resource failures. Report statically when the full call chain proves the issue. Review the contract in test assertions instead of relying on pass status.
+5. **Propose the minimal fix.** Prefer removing unjustified gates, narrowing dependencies and locks, separating auxiliary outcomes, or fixing ownership and transaction boundaries over adding recovery layers. Any new recovery layer, state machine, queue, or configuration must pass the four evaluation criteria.
 
-这些是检查方向，结论取决于实际契约和证据。
+## Focus areas
 
-## 结果要求
+- **Widened failure scope.** One bad record rejects a batch, one failed instance halts the system, or one conflict freezes unrelated resources.
+- **Blocked recovery.** Query, cancel, return, or release actions require full readiness checks meant for new work.
+- **Hard auxiliary dependencies.** Logging, metrics, alerts, diagnostics, summaries, or cleanup block work or overwrite committed results.
+- **Misclassified failures.** A query timeout restarts the process, transient or unknown outcomes report as business failures, or dependency waits exhaust the failure budget.
+- **Overbroad validation and invalidation.** Unrelated configuration, comments, history, or unused fields invalidate valid inputs or caches.
+- **Unbounded waits and recovery.** Retries or setup block the main loop, timeouts leak child processes or locks, or verification latency immediately stales its own result.
+- **Missing ownership and release paths.** Cleanup guesses targets by name, old conflicts act as permanent gates, or resolved conflicts have no clearing path.
 
-按影响和可达性排序，沿用项目优先级约定，证据强度单独标注。每项发现包含：
+## Reporting
 
-- **位置与触发条件**：准确源码位置及成立条件。
-- **因果链**：原本有效的操作 → 防御条件 → 额外依赖或失败传播 → 业务后果。
-- **不变量与越界**：必要保护是什么，当前机制在哪一步超出所需范围。
-- **证据**：标注“已复现”“静态可证”或“待核查”，说明实际验证范围。
-- **最小调整与验收**：既验证真实异常仍受控，也验证无关失败不妨碍有效操作。
+Order findings by impact and reachability using project priority conventions, and label evidence strength separately. Include five items in each finding:
 
-将已确认问题与待核查假设分开。现有规格明确要求某门禁时，区分“实现符合规格”和“规格本身的可靠性代价”，说明调整涉及的合同。
+- **Location and trigger.** State the exact source location and trigger conditions.
+- **Causal chain.** Trace the valid operation, the defensive condition, the added dependency or failure propagation, and the business impact.
+- **Invariant and overreach.** Name the concrete protection needed and where the mechanism exceeds it.
+- **Evidence.** Mark the finding as `reproduced`, `statically proven`, or `unverified`, and state what you checked.
+- **Minimal fix and acceptance.** Confirm that real exceptions stay contained and unrelated failures do not block valid operations.
 
-合并同根因的重复表现；涉及不同所有者或修复边界时分别定位并关联。报告实际覆盖范围及影响结论的缺口；证据不足时如实给出未发现或待核查结果。
-
-完成标准：每项正式发现都能说明“保护什么、为什么阻断到这里、哪个有效操作因此受损、如何用更小范围继续保护”。
-
+Keep confirmed findings separate from hypotheses. When a spec requires a gate, separate implementation compliance from the reliability cost of the spec and note the contract impact. Merge duplicate symptoms that share a root cause, and cross-reference them when fix boundaries differ. State coverage limits clearly, and report no finding or an open check when evidence is insufficient.
