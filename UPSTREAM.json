@@ -1,0 +1,246 @@
+{
+  "archify": {
+    "repo": "https://github.com/tt-a1i/archify",
+    "path": "archify",
+    "version": "2.16.0",
+    "modified": false
+  },
+  "ask-matt": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/ask-matt",
+    "version": "v1.3.2",
+    "modified": false
+  },
+  "benchmark-checklist": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/benchmark-checklist",
+    "version": "c3464c11c60b1352d5e8f5f0428a3a6943837568",
+    "modified": true,
+    "note": "Codex 手动调用与独立运行兼容；补 LICENSE"
+  },
+  "blast-radius": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/blast-radius",
+    "version": "c3464c11c60b1352d5e8f5f0428a3a6943837568",
+    "modified": true,
+    "note": "Codex 手动调用与独立运行兼容；补 LICENSE"
+  },
+  "code-review": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/code-review",
+    "version": "v1.3.2",
+    "modified": true,
+    "note": "新增 Defensive Gates 审查轴"
+  },
+  "codebase-design": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/codebase-design",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "create-verification-skill": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/create-verification-skill",
+    "version": "c3464c11c60b1352d5e8f5f0428a3a6943837568",
+    "modified": true,
+    "note": "Codex 手动调用与独立运行兼容；补 LICENSE"
+  },
+  "diagnosing-bugs": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/diagnosing-bugs",
+    "version": "v1.3.2",
+    "modified": false
+  },
+  "domain-modeling": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/domain-modeling",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "find-skills": {
+    "repo": "https://github.com/vercel-labs/skills",
+    "path": "skills/find-skills",
+    "version": "773fb2c7bbf16781670a3520affc4abd0c6151ae",
+    "modified": false
+  },
+  "grill-me": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/grill-me",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "grill-with-docs": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/grill-with-docs",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "grilling": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/grilling",
+    "version": "v1.3.2",
+    "modified": false
+  },
+  "handoff": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/handoff",
+    "version": "v1.3.2",
+    "modified": false
+  },
+  "how": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/how",
+    "version": "c3464c11c60b1352d5e8f5f0428a3a6943837568",
+    "modified": true,
+    "note": "Codex 手动调用与独立运行兼容；补 LICENSE"
+  },
+  "implement": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/implement",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "implement-spec": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/implement-spec",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "improve-codebase-architecture": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/improve-codebase-architecture",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "loop-me": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/loop-me",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "maintain-verification-skill": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/maintain-verification-skill",
+    "version": "c3464c11c60b1352d5e8f5f0428a3a6943837568",
+    "modified": true,
+    "note": "Codex 手动调用与独立运行兼容；补 LICENSE"
+  },
+  "pr": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/pr",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "prototype": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/prototype",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "research": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/research",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "retro": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/retro",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "setup-matt-pocock-skills": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/setup-matt-pocock-skills",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "sharpen": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/sharpen",
+    "version": "c3464c11c60b1352d5e8f5f0428a3a6943837568",
+    "modified": true,
+    "note": "Codex 手动调用与独立运行兼容；补 LICENSE"
+  },
+  "tdd": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/tdd",
+    "version": "v1.3.2",
+    "modified": false
+  },
+  "teach": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/teach",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "to-spec": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/to-spec",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "to-tickets": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/to-tickets",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "unslop": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/unslop",
+    "version": "c3464c11c60b1352d5e8f5f0428a3a6943837568",
+    "modified": true,
+    "note": "Codex 手动调用与独立运行兼容；补 LICENSE"
+  },
+  "wait-what": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/wait-what",
+    "version": "v1.3.1",
+    "modified": true,
+    "note": "改写为简明中文版，保留术语表查找规则"
+  },
+  "wayfinder": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/wayfinder",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "why": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/why",
+    "version": "c3464c11c60b1352d5e8f5f0428a3a6943837568",
+    "modified": true,
+    "note": "Codex 手动调用与独立运行兼容；补 LICENSE"
+  },
+  "wizard": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/engineering/wizard",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "writing-beats": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/writing-beats",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "writing-for-agents": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/productivity/writing-for-agents",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "writing-fragments": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/writing-fragments",
+    "version": "v1.3.1",
+    "modified": false
+  },
+  "writing-shape": {
+    "repo": "https://github.com/mattpocock/skills",
+    "path": "skills/in-progress/writing-shape",
+    "version": "v1.3.1",
+    "modified": false
+  }
+}

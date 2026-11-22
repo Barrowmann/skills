@@ -1,0 +1,5 @@
+interface:
+  display_name: "Wait What"
+  short_description: "用简明中文重新解释上一条回复，补充必要上下文并沿用项目术语"
+policy:
+  allow_implicit_invocation: false
