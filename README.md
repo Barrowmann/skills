@@ -1,10 +1,10 @@
-# Personal Agent Skills
+# Personal agent skills
 
-个人全局 skills 仓库，作为唯一事实源单向同步到各 agent harness。
+This repository is for personal use. It is the single source of truth for syncing global skills across devices and agent harnesses.
 
-## 同步命令
+## Sync command
 
-新设备首次安装或日常全量同步（可重复执行，新设备无需 clone 本仓库）：
+Run this command on a new device or to sync all skills. You do not need to clone this repository on a new device.
 
 ```bash
 npx skills@latest add Barrowmann/skills -g --skill '*' -y \
@@ -12,21 +12,21 @@ npx skills@latest add Barrowmann/skills -g --skill '*' -y \
      opencode amp cline deepagents kimi-code-cli warp zed
 ```
 
-> 要求 Node.js >= 22.20（`skills@1.9.0` 要求）。私有仓库会自动使用本机已配置的 Git 凭据、`gh` CLI 或 SSH。
+`skills@1.9.0` requires Node.js 22.20 or later. Private repository access uses your configured Git credentials, the `gh` CLI, or SSH.
 
-## 日常操作
+## Common tasks
 
-| 场景 | 命令 / 操作 |
+| Task | Action |
 |---|---|
-| 新设备初始化 | 运行上面的同步命令 |
-| 仓库修改了 skill | 运行同步命令，或 `npx skills update -g` |
-| 仓库新增了 skill | 运行同步命令（`update` 只更新已安装的 skill） |
-| 仓库删除了 skill | 交互式运行 `npx skills update -g` 按提示清理，或 `npx skills remove -g <name>` |
-| 编辑 skill | 仅在仓库 clone 中修改并 push，再同步到各设备 |
-| 升级第三方 skill | 按 [AGENTS.md](./AGENTS.md) 流程手动由 agent 更新并同步 `UPSTREAM.json` |
+| Set up a new device | Run the sync command above. |
+| Pull edits to installed skills | Run the sync command, or run `npx skills update -g`. |
+| Pull newly added skills | Run the sync command. `npx skills update -g` only updates already installed skills. |
+| Remove skills deleted from this repo | Run `npx skills update -g` interactively and confirm deletion, or run `npx skills remove -g <name>`. |
+| Edit a skill | Edit the file in a local clone of this repository, push the commit, then sync each device. |
+| Update third-party skills | Follow [AGENTS.md](./AGENTS.md) and update `UPSTREAM.json`. |
 
-## 仓库结构
+## Repository layout
 
-- `skills/<name>/`：全部 skill 副本（自写、原样第三方、改编第三方）
-- `UPSTREAM.json`：第三方 skill 上游来源与版本记录
-- `AGENTS.md`：仓库维护与上游升级说明
+- `skills/<name>/` holds a full copy of each skill. It contains personal skills, unmodified third-party skills, and locally adapted skills.
+- `UPSTREAM.json` records the upstream repository, path, version, and modification status for each third-party skill.
+- `AGENTS.md` defines the maintenance rules and the manual upgrade process for third-party skills.
