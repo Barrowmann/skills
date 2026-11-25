@@ -112,6 +112,13 @@
     "version": "v1.3.1",
     "modified": false
   },
+  "logo-design": {
+    "repo": "https://github.com/kaankiziltug/logo-design-skill",
+    "path": "skills/logo-design",
+    "version": "e9eaddc07895575253d6663320354a708f53e955",
+    "modified": true,
+    "note": "保留 Codex 手动调用配置，附上游 LICENSE 和 TRADEMARKS.md"
+  },
   "loop-me": {
     "repo": "https://github.com/mattpocock/skills",
     "path": "skills/in-progress/loop-me",
