@@ -30,7 +30,7 @@
     "path": "skills/engineering/code-review",
     "version": "v1.3.2",
     "modified": true,
-    "note": "新增 Defensive Gates 审查轴"
+    "note": "新增 Defensive Gates 审查轴；Standards 轴补充注释与抑制注解基线检查"
   },
   "codebase-design": {
     "repo": "https://github.com/mattpocock/skills",
