@@ -145,6 +145,13 @@
     "version": "v1.3.1",
     "modified": false
   },
+  "principle-fix-root-causes": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/principle-fix-root-causes",
+    "version": "c81f1bf680803f9e3f0cade6adb62593f43fb61f",
+    "modified": true,
+    "note": "允许 agent 自动调用（移除 disable-model-invocation 与 Codex 手动调用限制），附上游 LICENSE"
+  },
   "prototype": {
     "repo": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/prototype",
