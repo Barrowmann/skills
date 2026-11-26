@@ -132,6 +132,13 @@
     "modified": true,
     "note": "Codex 手动调用与独立运行兼容；补 LICENSE"
   },
+  "no-comments": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/no-comments",
+    "version": "c81f1bf680803f9e3f0cade6adb62593f43fb61f",
+    "modified": true,
+    "note": "独立运行、只读审查、核实现行约束后再修改，附上游 LICENSE"
+  },
   "pr": {
     "repo": "https://github.com/mattpocock/skills",
     "path": "skills/engineering/pr",
@@ -143,6 +150,13 @@
     "path": "skills/engineering/prototype",
     "version": "v1.3.1",
     "modified": false
+  },
+  "reflect": {
+    "repo": "https://github.com/backnotprop/pstack",
+    "path": "skills/reflect",
+    "version": "c81f1bf680803f9e3f0cade6adb62593f43fb61f",
+    "modified": true,
+    "note": "适配 T3 Code 和 Codex 的当前会话读取，获批后写入技能维护仓库，附上游 LICENSE"
   },
   "research": {
     "repo": "https://github.com/mattpocock/skills",
