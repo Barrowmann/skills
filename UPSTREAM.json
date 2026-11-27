@@ -81,6 +81,13 @@
     "version": "v1.3.2",
     "modified": false
   },
+  "gt": {
+    "repo": "https://gitea.com/gitea/cli",
+    "path": "skills/gt",
+    "version": "v2.0.0",
+    "modified": true,
+    "note": "移植 tea 工作约定；补上游 MIT LICENSE"
+  },
   "handoff": {
     "repo": "https://github.com/mattpocock/skills",
     "path": "skills/productivity/handoff",
